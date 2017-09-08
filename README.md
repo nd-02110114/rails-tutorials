@@ -32,7 +32,7 @@ $ docker exec -it CONTAINER_ID bash
 テストの実行
 
 ```
-$ docker-compose
+$ rspec
 ```
 
 ### ERROR対処
