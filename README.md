@@ -2,6 +2,8 @@
 
 ## Rails Tutorials
 
+DockerとRSpecで、Rails Tutorials
+
 ### 使い方のメモ
 
 起動と停止
@@ -29,12 +31,12 @@ $ docker-compose run web [rails-command]
 $ docker exec -it CONTAINER_ID bash
 ```
 
-テストの実行
+Railsアプリのコンテナ内でテストの実行
 
 ```
 $ rspec
 ```
 
 ### ERROR対処
- * A server is already running. Check /myapp/tmp/pids/server.pid.が出たら
+ * A server is already running. Check /myapp/tmp/pids/server.pid.が出たら<br>
  　server.pidを削除して、もう一度docker-compose upをする
