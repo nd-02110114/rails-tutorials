@@ -37,6 +37,13 @@ Railsアプリのコンテナ内でテストの実行
 $ rspec
 ```
 
+DevelopmentのDatabaseにアクセス
+
+```
+# su - postgres
+$ psql -U postgres myapp_development
+```
+
 ### Error対処
  * A server is already running. Check /myapp/tmp/pids/server.pid.が出たら<br>
  　server.pidを削除して、もう一度docker-compose upをする
