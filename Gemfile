@@ -15,6 +15,7 @@ gem 'jquery-rails', '4.3.1'
 gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.6.4'
 gem 'pg',           '0.20.0'
+gem 'bcrypt',       '3.1.11'
 
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri
