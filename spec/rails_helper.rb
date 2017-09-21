@@ -27,6 +27,11 @@ require 'capybara/rspec'
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+# helper method
+def is_logged_in?
+  !session[:user_id].nil?
+end
+
 RSpec.configure do |config|
   # add url helper
   config.include Rails.application.routes.url_helpers

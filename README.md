@@ -1,10 +1,8 @@
-# README
-
-## Rails Tutorials
+# Rails Tutorials
 
 DockerとRSpecで、Rails Tutorials
 
-### 使い方のメモ
+## 使い方のメモ
 
 起動と停止
 
@@ -44,6 +42,6 @@ DevelopmentのDatabaseにアクセス
 $ psql -U postgres myapp_development
 ```
 
-### Error対処
+## Error対処
  * A server is already running. Check /myapp/tmp/pids/server.pid.が出たら<br>
  　server.pidを削除して、もう一度docker-compose upをする
