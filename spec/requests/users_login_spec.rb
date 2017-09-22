@@ -33,6 +33,9 @@ RSpec.describe "Users Login Test", type: :request do
     delete logout_path
     expect(is_logged_in?).to be_falsey
     assert_redirected_to root_url
+
+    # 2つめのウィンドウでログアウトするシュミレート
+    delete logout_path
     follow_redirect!
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path, count: 0

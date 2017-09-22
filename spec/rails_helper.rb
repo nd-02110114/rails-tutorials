@@ -32,6 +32,10 @@ def is_logged_in?
   !session[:user_id].nil?
 end
 
+def log_in_as(user)
+  session[:user_id] = user.id
+end
+
 RSpec.configure do |config|
   # add url helper
   config.include Rails.application.routes.url_helpers
