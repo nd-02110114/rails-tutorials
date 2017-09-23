@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Users Login Test", type: :request do
+  before do
+    @pass = "password"
+    @user = FactoryGirl.create(:user, password: @pass,
+                        password_confirmation: @pass)
+  end
 
   it "login with invalid information" do
     get login_path
@@ -13,21 +18,16 @@ RSpec.describe "Users Login Test", type: :request do
   end
 
   it "proper login logout" do
-    # 必要な変数の定義
-    pass = "password"
-    user = FactoryGirl.create(:user, password: pass,
-                        password_confirmation: pass)
-
     #login
     get login_path
-    post login_path, params: { session: { email: user.email, password: pass} }
+    post login_path, params: { session: { email: @user.email, password: @pass} }
     assert is_logged_in?
-    assert_redirected_to user
+    assert_redirected_to @user
     follow_redirect!
     assert_template "users/show"
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", logout_path
-    assert_select "a[href=?]", user_path(user)
+    assert_select "a[href=?]", user_path(@user)
 
     #logout
     delete logout_path
@@ -39,7 +39,23 @@ RSpec.describe "Users Login Test", type: :request do
     follow_redirect!
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path, count: 0
-    assert_select "a[href=?]", user_path(user), count: 0
+    assert_select "a[href=?]", user_path(@user), count: 0
+  end
+
+  it "login with remembering" do
+    log_in_with_post(@user, remember_me:"1")
+    assert cookies['remember_token'].present?
+    assert_equal cookies['remember_token'], assigns(:user).remember_token
+  end
+
+  it "login without remembering" do
+    # 最初はcookieを保存して、ログイン
+    log_in_with_post(@user, remember_me:"1")
+    delete logout_path
+
+    # cookiesを削除して、ログイン
+    log_in_with_post(@user, remember_me:"0")
+    assert cookies['remember_token'].blank?
   end
 
 end
