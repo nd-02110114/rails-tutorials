@@ -19,6 +19,7 @@ gem 'bcrypt',       '3.1.11'
 
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri
+  gem 'faker'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'guard-rspec'
@@ -34,7 +35,6 @@ group :development do
 end
 
 group :test do
-  gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'poltergeist'
