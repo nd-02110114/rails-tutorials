@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Users Login Test", type: :request do
   before do
-    @pass = "password"
-    @user = FactoryGirl.create(:user, password: @pass,
-                        password_confirmation: @pass)
+    @user = FactoryGirl.create(:user)
   end
 
   it "login with invalid information" do
@@ -20,7 +18,7 @@ RSpec.describe "Users Login Test", type: :request do
   it "proper login logout" do
     #login
     get login_path
-    post login_path, params: { session: { email: @user.email, password: @pass} }
+    post login_path, params: { session: { email: @user.email, password: "password"} }
     assert is_logged_in?
     assert_redirected_to @user
     follow_redirect!

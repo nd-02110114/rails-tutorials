@@ -16,6 +16,8 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.6.4'
 gem 'pg',           '0.20.0'
 gem 'bcrypt',       '3.1.11'
+gem 'will_paginate',           '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
 
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri
