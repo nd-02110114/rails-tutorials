@@ -5,7 +5,7 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do
-  pass = Faker::Internet.password(8)
+  # pass = Faker::Internet.password(8)
   factory :user do
     name                  Faker::Name.name
     email                 Faker::Internet.unique.email
@@ -16,8 +16,8 @@ FactoryGirl.define do
   factory :other_user, class: User do
     name                  "Sterling Archer"
     email                 "duchess@example.gov"
-    password              pass
-    password_confirmation pass
+    password              'password'
+    password_confirmation 'password'
   end
 
   factory :user_for_pagination, class: User do
@@ -25,6 +25,14 @@ FactoryGirl.define do
     email                 { generate(:email) }
     password              'password'
     password_confirmation 'password'
+  end
+
+  factory :admin_user, class: User do
+    name                  'Michael Example'
+    email                 'michael@example.com'
+    password              'password'
+    password_confirmation 'password'
+    admin                  true
   end
 
 end

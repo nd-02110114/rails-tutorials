@@ -20,7 +20,7 @@ RSpec.describe "Users Edit Test", type: :request do
 
   it "successful edit with friendly forwarding" do
     get edit_user_path(@user)
-    assert session[:forwarding_url]
+    assert_equal edit_user_url(@user), session[:forwarding_url]
     log_in_with_post(@user)
     assert_redirected_to edit_user_path(@user) || default
 
@@ -44,27 +44,40 @@ RSpec.describe "Users Edit Test", type: :request do
 
 
   it "should redirect edit when not logged in" do
-    log_in_with_post(@other_user)
     get edit_user_path(@user)
-    assert_equal session[:forwarding_url], edit_user_url(@user)
     assert flash.present?
     assert_redirected_to login_url
-
-    # login-redirect
-    log_in_with_post(@user)
-    assert_redirected_to edit_user_path(@user)
-
-    # logout-redrect
-    delete logout_path
-    log_in_with_post(@user)
-    assert_redirected_to user_path(@user)
   end
 
   it "should redirect update when not logged in" do
-    log_in_with_post(@other_user)
     patch user_path(@user), params: { user: { name: @user.name,
                                     email: @user.email } }
     assert flash.present?
     assert_redirected_to login_url
+  end
+
+  it "should redirect edit when logged in as wrong user" do
+    log_in_with_post(@other_user)
+    get edit_user_path(@user)
+    assert flash.empty?
+    assert_redirected_to root_url
+  end
+
+  it "should redirect update when logged in as wrong user" do
+    log_in_with_post(@other_user)
+    patch user_path(@user), params: { user: { name: @user.name,
+                                              email: @user.email } }
+    assert flash.empty?
+    assert_redirected_to root_url
+  end
+
+  it "should not allow the admin attribute to be edited via the web" do
+    log_in_with_post(@other_user)
+    assert_equal @other_user.admin?, false
+    patch user_path(@other_user), params: {
+                             user: { password: 'password',
+                                     password_confirmation: 'password',
+                                     admin: true } }
+    assert_equal @other_user.reload.admin?, false
   end
 end

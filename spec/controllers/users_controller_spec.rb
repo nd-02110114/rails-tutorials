@@ -44,4 +44,5 @@ RSpec.describe UsersController, type: :controller do
       expect(flash[:success]).not_to be_empty
     end
   end
+
 end
