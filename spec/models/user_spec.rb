@@ -57,7 +57,7 @@ RSpec.describe User, type: :model do
     end
 
     it "authenticated? should return false for a user with nil digest" do
-      expect(@user.authenticated?("")).to be_falsey
+      expect(@user.authenticated?(:remember, "")).to be_falsey
     end
   end
 
@@ -80,5 +80,5 @@ RSpec.describe User, type: :model do
     end
 
   end
-  
+
 end

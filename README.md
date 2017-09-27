@@ -44,4 +44,7 @@ $ psql -U postgres myapp_development
 
 ## Error対処
  * A server is already running. Check /myapp/tmp/pids/server.pid.が出たら<br>
- 　server.pidを削除して、もう一度docker-compose upをする
+   → server.pidを削除して、もう一度docker-compose upをする
+
+ * database XXXX is being accessed by other usersが出たら
+   → [これを参考](https://hacknote.jp/archives/28726/)

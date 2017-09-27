@@ -39,9 +39,8 @@ RSpec.describe UsersController, type: :controller do
       }
 
       post :create, params: params
-      assert_redirected_to user_path(assigns(:user))
-      assert is_logged_in?
-      expect(flash[:success]).not_to be_empty
+      assert_redirected_to root_path
+      expect(flash[:info]).not_to be_empty
     end
   end
 

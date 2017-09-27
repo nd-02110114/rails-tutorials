@@ -11,6 +11,8 @@ FactoryGirl.define do
     email                 Faker::Internet.unique.email
     password              'password'
     password_confirmation 'password'
+    activated              true
+    activated_at           Time.now
   end
 
   factory :other_user, class: User do
@@ -18,6 +20,8 @@ FactoryGirl.define do
     email                 "duchess@example.gov"
     password              'password'
     password_confirmation 'password'
+    activated              true
+    activated_at           Time.zone.now
   end
 
   factory :user_for_pagination, class: User do
@@ -25,6 +29,8 @@ FactoryGirl.define do
     email                 { generate(:email) }
     password              'password'
     password_confirmation 'password'
+    activated              true
+    activated_at           Time.zone.now
   end
 
   factory :admin_user, class: User do
@@ -33,6 +39,8 @@ FactoryGirl.define do
     password              'password'
     password_confirmation 'password'
     admin                  true
+    activated              true
+    activated_at           Time.zone.now
   end
 
 end
