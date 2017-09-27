@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Home page link check", type: :request do
+RSpec.describe "Home View Test", type: :request do
   before do
     @user = FactoryGirl.create(:user)
   end

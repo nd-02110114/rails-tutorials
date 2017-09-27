@@ -34,6 +34,7 @@ RSpec.describe "Users List Test", type: :request do
     assert_select 'div.pagination'
     first_page_users = User.paginate(page: 1)
     first_page_users.each do |user|
+      assert user.activated
       assert_select 'a[href=?]', user_path(user), text: user.name
       unless user == admin_user
         assert_select 'a[href=?]', user_path(user), text: 'delete'
@@ -47,4 +48,5 @@ RSpec.describe "Users List Test", type: :request do
     get users_path
     assert_select  'a', text: 'delete', count: 0
   end
+  
 end
