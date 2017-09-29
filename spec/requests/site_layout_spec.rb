@@ -26,7 +26,7 @@ RSpec.describe "Home View Test", type: :request do
     assert_select "a[href=?]", user_path(@user)
     assert_select "a[href=?]", edit_user_path(@user)
     assert_select "a[href=?]", logout_path
-    assert_select "a[href=?]", signup_path
+    # assert_select "a[href=?]", signup_path
   end
 
   it "contact title check" do
