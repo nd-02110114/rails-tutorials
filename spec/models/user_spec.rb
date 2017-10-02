@@ -95,4 +95,25 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "Feed Test" do
+    it "feed should have the right posts" do
+      michael = users(:michael)
+      tom = users(:tom)
+      mary = users(:mary)
+       # フォローしているユーザーの投稿を確認
+      tom.microposts.each do |post_following|
+        assert michael.feed.include?(post_following)
+      end
+      # 自分自身の投稿を確認
+      michael.microposts.each do |post_self|
+        assert michael.feed.include?(post_self)
+      end
+      # フォローしていないユーザーの投稿を確認
+      mary.microposts.each do |post_unfollowed|
+        assert_equal false, michael.feed.include?(post_unfollowed)
+      end
+
+    end
+  end
+
 end
