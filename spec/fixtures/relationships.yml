@@ -1,0 +1,15 @@
+one:
+  follower: michael
+  followed: tom
+
+two:
+  follower: michael
+  followed: malory
+
+three:
+  follower: tom
+  followed: michael
+
+four:
+  follower: mary
+  followed: michael

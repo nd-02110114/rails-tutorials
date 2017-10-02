@@ -26,6 +26,8 @@ RSpec.describe "Home View Test", type: :request do
     assert_select "a[href=?]", user_path(@user)
     assert_select "a[href=?]", edit_user_path(@user)
     assert_select "a[href=?]", logout_path
+    assert_select '#following', @user.following.count.to_s
+    assert_select '#followers', @user.followers.count.to_s
     # assert_select "a[href=?]", signup_path
   end
 
